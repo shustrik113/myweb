@@ -19,8 +19,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from forms import ContactForm1, ContactForm2, ContactForm3
-from views import ContactWizard
+# from forms import ContactForm1, ContactForm2, ContactForm3
+# from views import ContactWizard
 
 
 urlpatterns = [
@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'search_results/page/([0-9]+)/$', 'other.views.search_results'),
 
     # contact
-    url(r'feedback/$', ContactWizard.as_view([ContactForm1, ContactForm2, ContactForm3])),
+    # url(r'feedback/$', ContactWizard.as_view([ContactForm1, ContactForm2, ContactForm3])),
 
     url(r'test/$', 'other.views.test'),
 

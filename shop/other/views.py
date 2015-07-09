@@ -20,11 +20,11 @@ from article.models import Article, Comment
 from book.models import Book
 from models import Category, Tag, Question, Choice, Menu
 
-from formtools.wizard.views import SessionWizardView
-from django.core.mail import send_mail
-import logging
+# from formtools.wizard.views import SessionWizardView
+# from django.core.mail import send_mail
+# import logging
 
-logr = logging.getLogger(__name__)
+# logr = logging.getLogger(__name__)
 
 
 # Starting website
@@ -187,37 +187,37 @@ def contact(request):
 
 
 # CONTACT WIZARD
-class ContactWizard(SessionWizardView):
-    template_name = 'contact/contact_form.html'
+# class ContactWizard(SessionWizardView):
+#     template_name = 'contact/contact_form.html'
 
-    def done(self, form_list, **kwargs):
-        args = {}
-        args['form_data'] = process_form_data(form_list)
-        args['menu'] = Menu.objects.all()
-        args['this_page'] = '/contact/'
-        args['pop_articles'] = Article.objects.all().order_by('likes').reverse()[:10]
-        args['new_articles'] = Article.objects.all().order_by('date').reverse()[:10]
-        args['cats'] = Category.objects.all()
-        args['tags'] = Tag.objects.all()
-        args['current_item'] = 'статьи'
+#     def done(self, form_list, **kwargs):
+#         args = {}
+#         args['form_data'] = process_form_data(form_list)
+#         args['menu'] = Menu.objects.all()
+#         args['this_page'] = '/contact/'
+#         args['pop_articles'] = Article.objects.all().order_by('likes').reverse()[:10]
+#         args['new_articles'] = Article.objects.all().order_by('date').reverse()[:10]
+#         args['cats'] = Category.objects.all()
+#         args['tags'] = Tag.objects.all()
+#         args['current_item'] = 'статьи'
 
-        # poll
-        args['question_web'] = Question.objects.get(text=u"Как вам наш сайт?")
-        args['choices'] = Choice.objects.filter(question_id=args['question_web'].id)
-        return render_to_response('/contact/done.html', args)
+#         # poll
+#         args['question_web'] = Question.objects.get(text=u"Как вам наш сайт?")
+#         args['choices'] = Choice.objects.filter(question_id=args['question_web'].id)
+#         return render_to_response('/contact/done.html', args)
 
 
-def process_form_data(form_list):
-    form_data = [form.cleaned_data for form in form_list]
-    logr.debug(form_data[0]['subject'])
-    logr.debug(form_data[1]['sender'])
-    logr.debug(form_data[2]['message'])
+# def process_form_data(form_list):
+#     form_data = [form.cleaned_data for form in form_list]
+#     logr.debug(form_data[0]['subject'])
+#     logr.debug(form_data[1]['sender'])
+#     logr.debug(form_data[2]['message'])
 
-    send_mail(form_data[0]['subject'],
-        form_data[2]['message'],
-        form_data[1]['sender'],
-        ['elimoon@mail.ru'], fail_silently=False)
-    return form_data
+#     send_mail(form_data[0]['subject'],
+#         form_data[2]['message'],
+#         form_data[1]['sender'],
+#         ['elimoon@mail.ru'], fail_silently=False)
+#     return form_data
 
 
 def test(request):
