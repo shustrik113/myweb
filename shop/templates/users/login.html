@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="auth">
+<div class="login">
+    <form action="/users/auth/register/" method="POST">
+    {% csrf_token %}
+    Пока что не зарегистрированы?<br /><br />
+    <table>
+    <tr>
+        <td><label for="reg_login">login:</label></td>
+        <td><input type="text" id="reg_login" name="username" placeholder="ваш логин..."></td>
+    </tr>
+    <tr>
+        <td><label for="email">email:</label></td>
+        <td><input type="email" id="email" placeholder="ваш email..." name="email"></td>
+    </tr>
+    <tr>
+        <td><label for="reg_pass">pass:</label></td>
+        <td><input type="password" id="reg_pass" name="password"></td>
+    </tr>
+    </table><br />
+        <input type="submit" value="регистрация">
+    </form>
+    </div>
+
+    <div class="login">
+    <form action="/users/auth/login/" method="POST">
+    {% csrf_token %}
+    Уже есть аккаунт? <br /><br />
+    <table>
+    <tr>
+        <td><label for="username">login:</label></td>
+        <td><input type="text" id="username" name="username" placeholder="ваш логин..."></td>
+    </tr>
+    <tr>
+        <td><label for="password">pass:</label></td>
+        <td><input type="password" id="password" name="password"></td>
+    </tr>
+    </table>
+        {% if login_error %}
+            <p class="error">{{ login_error }}</p>
+        {% endif %}
+        <a href="/users/forgotpass/">Забыли пароль?</a><br />
+        <input type="submit" value="войти">
+    </form>
+
+</div>
+</div>
+{% endblock %}

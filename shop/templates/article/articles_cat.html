@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+{% for article in articles %}
+<div class="article">
+    <h3> {{ forloop.counter }}. &nbsp;
+    <a href="/articles/cat/{{ article.cath.slug }}" class="lnkCat">{{ article.cath.name }}</a>
+    <a href="/articles/article/{{ article.id }}">{{ article.title }}</a>
+    </h3>
+    {% if article.image %}
+        <img src="/{{article.image.url}}" alt="" class="artPic">
+    {% endif %}
+    <div class="artText">
+    {{ article.text }} &nbsp;
+    <a href="/articles/article/{{ article.id }}" title="читать далее">>></a>
+    </div>
+
+    <div class="artLike">
+
+    <a href="/articles/article/addlike/{{ article.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ article.likes }}</span></a></div>
+
+    <div class="artComments">
+    <a href="/articles/article/{{ article.id }}#comment">комментировать</a>
+    </div>
+
+    <div class="artCountComs">{{ article.date }}&nbsp;&nbsp;&nbsp;
+    Автор: <a href="/other/users/{{ article.user }}">{{ article.user }}</a>
+    &nbsp;&nbsp;&nbsp;
+    Комменты: <a href="/articles/article/{{ article.id }}#comments">{{ article.num_comments }}</a></div>
+</div>
+{% empty %}
+<div class="article">
+<div class="artText">
+<p></p>
+Йой! Ниц нема! :)<br/>
+<p></p>
+{% if user_agent %}
+<div>
+    <p></p>
+    <b>Ваши браузер и ось:</b>
+    <p>{{ user_agent }}</p>
+</div>
+{% endif %}
+</div>
+</div>
+{% endfor %}
+
+<div class="divPagin">
+<ul class="pagination">
+    <li class="pageCount">&nbsp;Страница {{ page_number }} из {{ count }}&nbsp;</li>
+    {% if articles.has_previous %}
+        <li><a href="/articles/cat/{{ cat_slug }}/page/{{ articles.previous_page_number }}">&nbsp;сюды&nbsp;</a></li>
+    {% endif %}
+    {% for page in articles.paginator.page_range %}
+        {% if page == articles.number %}
+            <li class="current"><span>{{ page }}</span></li>
+        {% else %}
+            <li><a href="/articles/cat/{{ cat_slug }}/page/{{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if articles.has_next %}
+        <li class="arrow"><a href="/articles/cat/{{ cat_slug }}/page/{{ articles.next_page_number }}">&nbsp;туды&nbsp;</a></li>
+    {% endif %}
+</ul>
+</div>
+
+{% endblock %}

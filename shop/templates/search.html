@@ -1,0 +1,7 @@
+{% if searched.count > 0 %}
+
+    {% for s in searched %}
+        <div><a href="/articles/article/{{ s.id }}">{{ s.title }}</a></div>
+    {% endfor %}
+
+{% endif %}

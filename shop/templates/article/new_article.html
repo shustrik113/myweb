@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="article">
+<div class="artText">
+<form action="/articles/savearticle/" method="POST" class="frmAddNew" enctype="multipart/form-data">
+{% csrf_token %}
+<p>Добавить новую статью</p>
+<table>
+    <tr>
+        <td class="tdLabel">Заголовок</td>
+        <td class="tdValue"><input type="text" name="article_title" /></td>
+    </tr>
+    <tr>
+        <td class="tdLabel">Текст</td>
+        <td class="tdValue">
+        <textarea name="article_text" id="" cols="30" rows="10"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td class="tdLabel">Теги</td>
+        <td class="tdValue"><input type="text" name="article_tags"/></td>
+    </tr>
+    <tr>
+        <td class="tdLabel">Картинка</td>
+        <td class="tdValue"><input type="file" name="article_image"/></td>
+    </tr>
+        <tr>
+        <td class="tdLabel">Категория</td>
+        <td class="tdValue">
+        <select name="article_cath" id="">
+            {% for cat in cats %}
+                <option value="{{ cat.slug }}">{{ cat.name }}</option>
+            {% endfor %}
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tdLabel"></td>
+        <td class="tdValue"><input type="checkbox" name="article_is_private" id="priv"/>
+        <label for="priv">Сделать приватной</label></td>
+    </tr>
+</table>
+<input type="reset" value="Очистить">
+<input type="submit" value="Сохранить">
+</form>
+</div>
+</div>
+
+{% endblock %}

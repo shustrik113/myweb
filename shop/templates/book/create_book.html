@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="article">
+<div class="artText">
+<form action="/books/newbook/" mothod="POST" class="frmAddBook" enctype="multipart/form-data">
+    <p>Добавить новую книгу</p>
+    {% csrf_token %}
+<table>
+    {{ form.as_table }}
+</table>
+<p><input type="submit" name="submit" value="сохранить"></p>
+</form>
+</div>
+</div>
+
+{% endblock %}

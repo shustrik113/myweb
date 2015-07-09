@@ -1,0 +1,117 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="article">
+    <h3>
+    <a href="/books/cat/{{ book.cath.slug }}" class="lnkCat">{{ book.cath.name }}</a>
+    {{ book.title }}</h3>
+    {% if book.image %}
+        <img src="/{{book.image.url}}" alt="" class="bookPic">
+    {% endif %}
+    <div class="artText">
+
+    {{ book.text | linebreaksbr }}
+
+    </div>
+    <div class="artTags">Теги:&nbsp;
+        {% for tag in book_tags %}
+            <a href="/books/tag/{{ tag.slug }}">{{ tag.name }}</a>&nbsp;
+        {% endfor %}
+    </div>
+
+    <div class="artLike">
+    <a href="/books/article/addlike/{{ article.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ article.likes }}</span></a></div>
+
+    <div class="artDate">{{ book.date }}</div>
+    <div class="artCountComs">Комментарии: <span>{{ book.num_comments }}</span></div>
+</div>
+
+<div id="comments">
+{% for comment in book.commentbook_set.all %}
+    <div class="article">
+        <h3> <a href="/other/users/{{ comment.user }}">{{ comment.user }}</a>
+        <span class="comDate">{{ comment.date }}</span>
+        </h3>
+        <div class="comText">
+        <table>
+            <tr>
+                <td class="tdComLeft">
+                {% if avatar %}
+                    <img src="{% static 'images/avatars/{{ avatar }}' %}" alt="">
+                {% else %}
+                    <img src="{% static 'images/anonym.png' %}" alt="">
+                {% endif %}
+                </td>
+                <td class="tdComRight">
+                {{ comment.text | linebreaksbr }}
+                </td>
+            </tr>
+            <tr>
+                <td class="tdComLeft2"></td>
+                <td class="tdButtonsRight">
+                    <a href="/books/comment/{{ comment.id }}/reply/">Ответить</a>
+
+                    <div class="comLike">
+                    <a href="/books/comment/addlike/{{ comment.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ comment.likes }}</span></a></div>
+
+                </td>
+            </tr>
+        </table>
+        </div>
+    </div>
+{% empty %}
+    <div class="article">
+        <div class="artText">Пока-что нет комментариев.</div>
+    </div>
+{% endfor %}
+
+<div class="divPagin">
+<ul class="pagination">
+    <li class="pageCount">&nbsp;Страница {{ page_number }} из {{ count }}&nbsp;</li>
+    {% if comments.has_previous %}
+        <li class="arrow unavialable"><a href="/books/book/{{ book.id }}/page/{{ comments.previous_page_number }}#comments">&nbsp;сюды&nbsp;</a></li>
+    {% endif %}
+    {% for page in comments.paginator.page_range %}
+        {% if page == comments.number %}
+            <li class="current"><span>{{ page }}</span></li>
+        {% else %}
+            <li><a href="/books/book/{{ book.id }}/page/{{ page }}#comments">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if comments.has_next %}
+        <li class="arrow"><a href="/books/book/{{ book.id }}/page/{{ comments.next_page_number }}#comments">&nbsp;туды&nbsp;</a></li>
+    {% endif %}
+</ul>
+</div>
+<p></p>
+
+{% if username %}
+<div id="comment" class="article">
+{% if error %}
+    {{ error }}
+{% endif %}
+<h3>Добавить комментарий</h3>
+<div class="artText">
+
+<form action="/books/book/addcomment/{{ book.id }}" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" name="submit" value="ответить">
+</form>
+
+</div>
+</div>
+{% else %}
+<div id="comment" class="article">
+<div class="artText"><p></p>
+Чтобы добавлять комментарии, <a href="/other/loginpage/">зарегистрируйтесь</a>.<p></p>
+</div>
+</div>
+{% endif %}
+
+</div>
+
+{% endblock %}

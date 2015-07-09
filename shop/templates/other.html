@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="article">
+<h3>Всякие бздурки :)</h3>
+<div class="artText">
+
+{% if user_agent %}
+    <div class="agent_info">
+        <b>Ваши браузер и ось:</b><br />
+        <p>{{ user_agent }}</p>
+    </div>
+{% endif %}
+
+<div class="rekl">
+<div class="view view-sixth">
+    <img src="{% static 'images/Contemplation.jpg' %}" />
+    <div class="mask">
+        <h2>Обитель странного алхимика</h2>
+        <p>Место, где есть чем заняться скучающим любителям экзотики. Ибо автор проекта - не только волшебник, он еще и лечится.</p>
+        <a href="#" class="info">Перейти на сайт...</a>
+    </div>
+</div>
+</div>
+
+<div class="experiments">
+<p>А тут у нас всякие эксперименты:</p>
+<p><a href="/other/feedback/">Wizard форма для обратной связи</a></p>
+<p><a href="/other/test/">Test</a></p>
+</div>
+
+
+<p></p>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+<h3>Спасибо за Ваш голос!</h3>
+
+{% csrf_token %}
+<p>{{ question_web.text }}</p>
+<div>
+    {% for  choice in choices %}
+        <span for="{{ choice.id }}">{{ choice.text }} ({{ choice.votes }})</span>
+        <br/>
+    {% endfor %}
+        <p></p>
+</div>

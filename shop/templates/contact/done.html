@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="article">
+<h3>Thanks for contacting us!</h3>
+<div class="artText">
+{% for form in form_data %}
+    {{ form }}
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

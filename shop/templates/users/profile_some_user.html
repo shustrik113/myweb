@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="article">
+    <h3>Профиль пользователя {{ name }}</h3>
+    <div class="artText">
+        <table class="tblProfile">
+            <tr>
+                <td class="tdProfileLeft">
+                <div id="lnkAvatar">
+                {% if avatar %}
+                    <img src="{% static 'images/avatars/{{ avatar }}' %}" alt="">
+                {% else %}
+                    <img src="{% static 'images/anonym.png' %}" alt="">
+                {% endif %}
+                </div>
+                </td>
+                <td rowspan="2">
+                    <p>Ник: <b>{{ name }}</b></p>
+                    <p>Email: <b>
+                    {% if username.is_priv_email %}
+                        скрыто пользователем
+                    {% else %}
+                        {{ email }}
+                    {% endif %}
+                    </b></p>
+                    <p>Дата регистрации: <b>{{ date_joined }}</b></p>
+                    <p>Последний вход: <b>{{ last_login }}</b></p>
+
+                    <p>Имя: <b>
+                    {% if first_name %}
+                    {{ first_name }}
+                    {% else %}
+                    {{ empty }}
+                    {% endif %}
+                    </b></p>
+
+                    <p>Фамилия: <b>
+                    {% if last_name %}
+                    {{ last_name }}
+                    {% else %}
+                    {{ empty }}
+                    {% endif %}
+                    </b></p>
+
+                    <p>Дата рождения: <b>
+                    {% if birthday %}
+                    {{ birthday }} ( {{ age }} )
+                    {% else %}
+                    {{ empty }}
+                    {% endif %}
+                    </b></p>
+
+                    <p>Пол: <b>
+                    {% if sex %}
+                    {{ sex }}
+                    {% else %}
+                    {{ empty }}
+                    {% endif %}
+                    </b></p>
+
+                    <p>Город: <b>
+                    {% if city %}
+                    {{ city }}
+                    {% else %}
+                    {{ empty }}
+                    {% endif %}
+                    </b></p>
+
+                </td>
+            </tr>
+            <tr>
+                <td class="tdProfileMenu">
+
+                </td>
+            </tr>
+        </table>
+        <p></p>
+    </div>
+</div>
+
+{% endblock %}

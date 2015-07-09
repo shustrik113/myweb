@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+{% for book in books %}
+<div class="article">
+    <h3>
+    <a href="/books/cat/{{ book.cath.slug }}" class="lnkCat">{{ book.cath.name }}</a>
+    <a href="/books/book/{{ book.id }}" title="{{ book.title }}">
+    "{{ book.title | truncatechars:50 }}"
+    </a>
+    </h3>
+    {% if book.image %}
+        <img src="/{{book.image.url}}" alt="" class="bkPic">
+    {% endif %}
+    <div class="artText">
+    {{ book.text | truncatechars:360 }} &nbsp;
+    <a href="/books/book/{{ book.id }}" title="читать далее">>></a>
+    </div>
+
+    <div class="artLike">
+
+    <a href="/books/book/addlike/{{ book.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ book.likes }}</span></a></div>
+
+    <div class="artComments">
+    <a href="/books/book/{{ book.id }}#comment">комментировать</a>
+    </div>
+
+    <div class="artCountComs">{{ book.date }}&nbsp;&nbsp;&nbsp;
+    Автор: <a href="/other/users/{{ book.user }}">{{ book.user }}</a>
+    &nbsp;&nbsp;&nbsp;
+    Комменты: <a href="/books/book/{{ book.id }}#comments">{{ book.num_comments }}</a></div>
+</div>
+{% empty %}
+<div class="article">
+<div class="artText">
+<p></p>
+Йой! Ниц нема! :)<br/>
+<p></p>
+{% if user_agent %}
+<div>
+    <p></p>
+    <b>Ваши браузер и ось:</b>
+    <p>{{ user_agent }}</p>
+</div>
+{% endif %}
+</div>
+</div>
+{% endfor %}
+
+<div class="divPagin">
+<ul class="pagination">
+    <li class="pageCount">&nbsp;Страница {{ page_number }} из {{ count }}&nbsp;</li>
+    {% if books.has_previous %}
+        <li><a href="/books/cat/{{ cat_slug }}/page/{{ books.previous_page_number }}">&nbsp;сюды&nbsp;</a></li>
+    {% endif %}
+    {% for page in books.paginator.page_range %}
+        {% if page == books.number %}
+            <li class="current"><span>{{ page }}</span></li>
+        {% else %}
+            <li><a href="/books/cat/{{ cat_slug }}/page/{{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if books.has_next %}
+        <li class="arrow"><a href="/books/cat/{{ cat_slug }}/page/{{ books.next_page_number }}">&nbsp;туды&nbsp;</a></li>
+    {% endif %}
+</ul>
+</div>
+
+{% endblock %}

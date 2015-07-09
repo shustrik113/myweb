@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+{% for item in items %}
+<div class="article">
+    {% if item.item_type == 'article' %}
+
+<h3>
+    <a href="/articles/cat/{{ item.cath.slug }}" class="lnkCat">{{ item.cath.name }}</a>
+    <a href="/articles/article/{{ item.id }}">{{ item.title }}</a>
+    </h3>
+    {% if item.image %}
+        <img src="/{{item.image.url}}" alt="" class="artPic">
+    {% endif %}
+    <div class="artText">
+    {{ item.text | truncatechars:400 }} &nbsp;
+    <a href="/articles/article/{{ item.id }}" title="читать далее">>></a>
+    </div>
+
+    <div class="artLike">
+    <a href="/articles/article/addlike/{{ item.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ item.likes }}</span></a></div>
+
+    <div class="artComments">
+    <a href="/articles/article/{{ item.id }}#comment">комментировать</a>
+    </div>
+
+    <div class="artCountComs">{{ item.date }}&nbsp;&nbsp;&nbsp;
+    Автор: <a href="/other/users/{{ item.user }}">{{ item.user }}</a>
+    &nbsp;&nbsp;&nbsp;
+    Комменты: <a href="/articles/article/{{ item.id }}#comments">{{ item.num_comments }}</a></div>
+</div>
+
+    {% else %}
+
+<h3>
+    <a href="/books/cat/{{ item.cath.slug }}" class="lnkCat">{{ item.cath.name }}</a>
+    <a href="/books/book/{{ item.slug }}" title="{{ item.title }}">"{{ item.title | truncatechars:55 }}"</a>
+    </h3>
+    <div class="bkText_wrapper">
+    {% if item.image %}
+        <img src="/{{ item.image.url }}" alt="" class="bkPic">
+    {% endif %}
+    <div class="artText">
+
+    <div class="bkInfo">
+    Автор:
+    {% for a in item.authors.all %}
+    <a href="/books/authors/{{ a.id }}">
+        {{ a.first_name }}
+        {{ a.last_name }}
+    </a>
+    {% endfor %}
+    Издательство:
+    <a href="/books/publishers/{{ item.publisher.id }}">
+        {{ item.publisher.name }}
+    </a>
+    Цена:
+        {{ item.price }}
+    </div>
+
+    <br />
+    {{ item.text | truncatechars:360 }} &nbsp;
+    <a href="/books/book/{{ item.id }}" title="читать далее">>></a>
+    </div>
+    </div>
+
+    <div class="artLike">
+    <a href="/books/book/addlike/{{ item.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ item.likes }}</span></a></div>
+
+    <div class="artComments">
+    <a href="/books/book/{{ item.id }}#comment">комментировать</a>
+    </div>
+
+    <div class="artCountComs">{{ item.date }}&nbsp;&nbsp;&nbsp;
+    Автор: <a href="/other/users/{{ item.user }}">{{ item.user }}</a>
+    &nbsp;&nbsp;&nbsp;
+    Комменты: <a href="/books/book/{{ item.id }}#comments">{{ item.num_comments }}</a></div>
+</div>
+
+    {% endif %}
+
+
+{% empty %}
+<div class="article">
+<div class="artText">
+<p></p>
+Ничего не найдено<br/>
+<p></p>
+
+</div>
+</div>
+{% endfor %}
+
+<div class="divPagin">
+<ul class="pagination">
+    <li class="pageCount">&nbsp;Страница {{ page_number }} из {{ count }}&nbsp;</li>
+    {% if items.has_previous %}
+        <li class="arrow unavialable"><a href="/other/search_results/page/{{ items.previous_page_number }}">&nbsp;сюды&nbsp;</a></li>
+    {% endif %}
+    {% for page in items.paginator.page_range %}
+        {% if page == items.number %}
+            <li class="current"><span>{{ page }}</span></li>
+        {% else %}
+            <li><a href="/other/search_results/page/{{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if items.has_next %}
+        <li class="arrow"><a href="/other/search_results/page/{{ items.next_page_number }}">&nbsp;туды&nbsp;</a></li>
+    {% endif %}
+</ul>
+</div>
+
+{% endblock %}

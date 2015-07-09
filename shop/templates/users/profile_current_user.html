@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="article">
+<h3>А тут у нас вроде как ваш профиль</h3>
+<div class="artText">
+
+<div class="profileSide1">
+{% for field in form %}
+    {{ field.error }}
+{% endfor %}
+
+<form action="/users/profile_current_user/" method="POST" enctype="multipart/form-data" class="frmProfile">
+    {% csrf_token %}
+<table class="tblProfile">
+<tr>
+    <th>Ник:</th>
+    <td>{{ username }}</td>
+</tr>
+<tr>
+    <th>Время регистрации:</th>
+    <td>{{ username.date_joined }}</td>
+</tr>
+<tr>
+    <th>Последний вход:</th>
+    <td>{{ username.last_login }}</td>
+</tr>
+<tr>
+    <th>Email:</th>
+    <td>
+        <input type="email" name="email" id="email" value="{{ username.email }}">
+        <input type="checkbox" name="priv" id="priv">
+        <label for="priv">скрыть</label>
+    </td>
+</tr>
+    {{ form.as_table }}
+<tr>
+    <th>К-во публикаций:</th>
+    <td>{{ username.profile.num_pub }}</td>
+</tr>
+<tr>
+    <th>Карма:</th>
+    <td>{{ username.profile.likes_got }}</td>
+</tr>
+</table>
+<div class="subm">
+    <input type="submit" value="Обновить">
+    <p></p>
+</div>
+</form>
+</div>
+
+<div class="profileSide2">
+<div class="ava">
+    {% if username.profile.ava %}
+        <img src="{{ username.profile.ava.url }}" alt="">
+    {% else %}
+        <img src="{% static 'images/anonym.png' %}" alt="">
+    {% endif %}
+</div>
+
+<div class="profileMenu">
+<a href="/articles/newarticle/">Добавить статью</a>
+<a href="/books/newbook/">Добавить книгу</a>
+<a href="/games/newgame/">Добавить игру</a>
+</div>
+
+</div>
+
+<p></p>
+</div>
+</div>
+{% endblock %}

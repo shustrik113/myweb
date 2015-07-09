@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+{% for book in books %}
+<div class="article">
+    <h3>
+    <a href="/books/cat/{{ book.cath.slug }}" class="lnkCat">{{ book.cath.name }}</a>
+    <a href="/books/book/{{ book.slug }}" title="{{ book.title }}">"{{ book.title | truncatechars:55 }}"</a>
+    </h3>
+    <div class="bkText_wrapper">
+    {% if book.image %}
+        <img src="/{{book.image.url}}" alt="" class="bkPic">
+    {% endif %}
+    <div class="artText">
+
+    <div class="bkInfo">
+    Автор:
+    {% for a in book.authors.all %}
+    <a href="/books/authors/{{ a.id }}">
+        {{ a.first_name }}
+        {{ a.last_name }}
+    </a>
+    {% endfor %}
+    Издательство:
+    <a href="/books/publishers/{{ book.publisher.id }}">
+        {{ book.publisher.name }}
+    </a>
+    Цена:
+        {{ book.price }}
+    </div>
+
+    <br />
+    {{ book.text | truncatechars:360 }} &nbsp;
+    <a href="/books/book/{{ book.id }}" title="читать далее">>></a>
+    </div>
+    </div>
+
+    <div class="artLike">
+    <a href="/books/book/addlike/{{ book.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ book.likes }}</span></a></div>
+
+    <div class="artComments">
+    <a href="/books/book/{{ book.id }}#comment">комментировать</a>
+    </div>
+
+    <div class="artCountComs">{{ book.date }}&nbsp;&nbsp;&nbsp;
+    Автор: <a href="/other/users/{{ book.user }}">{{ book.user }}</a>
+    &nbsp;&nbsp;&nbsp;
+    Комменты: <a href="/books/book/{{ book.id }}#comments">{{ book.num_comments }}</a></div>
+</div>
+{% empty %}
+<div class="article">
+<div class="artText">
+    <p></p>
+    Йой! Ниц нема! :)<br/>
+    <p></p>
+    </div>
+</div>
+{% endfor %}
+
+<div class="divPagin">
+<ul class="pagination">
+    <li class="pageCount">&nbsp;Страница {{ page_number }} из {{ count }}&nbsp;</li>
+    {% if books.has_previous %}
+        <li class="arrow unavialable"><a href="/books/page/{{ books.previous_page_number }}">&nbsp;туды&nbsp;</a></li>
+    {% endif %}
+    {% for page in books.paginator.page_range %}
+        {% if page == books.number %}
+        <li class="current"><span>{{ page }}</span></li>
+        {% else %}
+            <li><a href="/books/page/{{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if books.has_next %}
+        <li class="arrow"><a href="/books/page/{{ books.next_page_number }}">&nbsp;сюды&nbsp;</a></li>
+    {% endif %}
+</ul>
+</div>
+
+{% endblock %}

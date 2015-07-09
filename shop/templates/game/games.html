@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% load game_tags %}
+
+{% block content %}
+
+{% for game in games %}
+<div class="article">
+    <h3>
+    <a href="/games/game/{{ game.slug }}">{{ game.title }}</a></h3>
+    <div class="artText">
+    {% if game.image %}
+        {{ game.image }}
+    {% endif %}
+    <div>{{ game.text | game_shorten_text:50 }}</div>
+    <div>{{ game.date }}</div>
+    <div>{{ game.likes }}</div>
+    </div>
+</div>
+{% empty %}
+<div class="article">
+<div class="artText">
+    <p></p>
+    Йой! Ниц нема! :)<br/>
+    <p></p>
+    </div>
+</div>
+{% endfor %}
+
+<div class="divPagin">
+<ul class="pagination">
+    <li class="pageCount">&nbsp;Страница {{ page_number }} из {{ count }}&nbsp;</li>
+    {% if games.has_previous %}
+        <li class="arrow unavialable"><a href="/games/page/{{ games.previous_page_number }}">&nbsp;туды&nbsp;</a></li>
+    {% endif %}
+    {% for page in games.paginator.page_range %}
+        {% if page == games.number %}
+        <li class="current"><span>{{ page }}</span></li>
+        {% else %}
+            <li><a href="/games/page/{{ page }}">{{ page }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if games.has_next %}
+        <li class="arrow"><a href="/games/page/{{ games.next_page_number }}">&nbsp;сюды&nbsp;</a></li>
+    {% endif %}
+</ul>
+</div>
+
+{% endblock %}

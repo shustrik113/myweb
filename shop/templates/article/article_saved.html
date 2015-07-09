@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="article">
+<div class="artText">
+<p>Статья успешно сохранена. &nbsp;
+<a href="/articles/newarticle/">Добавить еще одну статью</a>
+</p>
+<table class="tblArticleSaved">
+    <tr>
+        <td>Путь</td>
+        <td>{{ request.path }}</td>
+    </tr>
+    <tr>
+        <td>Полный путь</td>
+        <td>{{ request.get_full_path }}</td>
+    </tr>
+    <tr>
+        <td>Хост</td>
+        <td>{{ request.get_host }}</td>
+    </tr>
+    <tr>
+        <td>Шифрование</td>
+        <td>{{ request.is_secure }}</td>
+    </tr>
+    <tr>
+        <td>Браузер</td>
+        <td>{{ user_agent }}</td>
+    </tr>
+    <tr>
+        <td>Заголовок</td>
+        <td class="tdValue">{{ article.title }}</td>
+    </tr>
+    <tr>
+        <td>Текст</td>
+        <td class="tdValue">{{ article.text }}</td>
+    </tr>
+    <tr>
+        <td>Теги</td>
+        <td class="tdValue">
+        {% for tag in article_tags %}
+        {{ tag.name }} &nbsp;
+        {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td>Картинка</td>
+        <td class="tdValue">{{ article.image }}</td>
+    </tr>
+        <tr>
+        <td>Категория</td>
+        <td class="tdValue">{{ article.cath }}</td>
+    </tr>
+    <tr>
+        <td>Приватность</td>
+        <td class="tdValue">{{ article.is_private }}</td>
+    </tr>
+</table>
+<p></p>
+</div>
+</div>
+
+{% endblock %}
