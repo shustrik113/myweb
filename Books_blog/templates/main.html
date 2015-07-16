@@ -1,0 +1,168 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Литературный блог</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div id="all">
+            <header>
+            <img src="{% static 'images/header.jpg' %}" alt="">
+            <div id="hdrText">
+            {% if this_page == 'index' %}
+                Литературный блог
+            {% else %}
+                <a href="/">Литературный блог</a>
+            {% endif %}
+            </div>
+            </header>
+            <div id="main">
+
+            <div id="left">
+            {% block left %}
+            {% endblock %}
+            </div>
+
+            <div id="right">
+
+                <div class="rtBox">
+                    <div class="opacity"></div>
+                    <div class="artTitle">Вход на сайт</div>
+                    <div class="emText">
+                        <form action="" method="POST" id="frmAuth">
+                            <table>
+                            <tr>
+                            <td><label for="login">login:</label></td>
+                            <td><input type="text" id="login" placeholder="Логин или email..."></td>
+                            </tr>
+                            <tr>
+                            <td><label for="pass">pass:</label></td>
+                            <td><input type="password" id="pass"></td>
+                            </tr>
+                            </table>
+                            <a href="/auth/register/">Регистрация</a> :: <a href="/auth/forgotpass">Забыли пароль?</a>
+                            <br />
+                            <input type="submit" value="Войти" id="btnEmail">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="rtBox">
+                    <div class="opacity"></div>
+                    <div class="artTitle">Подписка на рассылку</div>
+                    <div class="emText">
+                        <form action="" method="POST" id="frmSubscribe">
+                            <input type="email" placeholder="Введите email..." id="email">
+                            <br />
+                            <input type="submit" value="Подписаться" id="btnEmail">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="rtBox">
+                    <div class="opacity"></div>
+                    <div class="artTitle">Последние статьи</div>
+                    <div class="artText">
+                    <ul>
+
+                        {% for article in ten_articles %}
+
+                        <li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
+
+                        {% endfor %}
+
+                    </ul>
+                    </div>
+                </div>
+
+                <div class="rtBox">
+                    <div class="opacity"></div>
+                    <div class="artTitle">Комментарии</div>
+                    <div class="artText">
+                    <ul>
+
+                        {% for comment in ten_comments %}
+
+                        <li><a href="/article/{{ comment.article.id }}/{{ comment.id }}">{{ comment.author }}</a>: {{ comment.text }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+                    </div>
+                </div>
+
+                <div class="rtBox">
+                    <div class="view">
+                    <div class="opacity"></div>
+                    <div class="artTitle">Больше интересного</div>
+                    <div class="artText">
+                    <img src="{% static 'images/author.jpg' %}" alt="" id="reklama">
+                    <div class="mask">
+                     <h2 id="h2Lit">Литературные игры</h2>
+                     <p id="pLit">Каждые несколько месяцев мы проводим интересные литературные конкурсы и состязания. Присоединяйтесь, вместе веселее.</p>
+                     <a href="/games/" id="aLit">Узнать больше...</a>
+                     </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="rtBox">
+                    <div class="opacity"></div>
+                    <div class="artTitle">Поиск</div>
+                    <div class="emText">
+                        <form action="" method="POST" id="frmSearch">
+                            <input type="text" id="search" value="Что ищем?">
+                            <br />
+                            <input type="submit" value="Искать" id="btnSearch">
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="rtBox">
+                    <div class="opacity"></div>
+                    <div class="artTitle">Нам интересно ваше мнение</div>
+                    <div class="emText">
+                        <form action="" method="POST" id="frmPoll">
+                        <b>Как вам наш сайт?</b><br>
+                        <input type="radio" id="w5" name="poll" checked="checked">
+                        <label for="w5">Отлично</label><br>
+                        <input type="radio" id="w4" name="poll">
+                        <label for="w4">Хорошо</label><br>
+                        <input type="radio" id="w3" name="poll">
+                        <label for="w3">Неплохо</label><br>
+                        <input type="radio" id="w2" name="poll">
+                        <label for="w2">Плохо</label><br>
+                        <input type="radio" id="w1" name="poll">
+                        <label for="w1">Ужасно</label><br>
+                        <input type="submit" value="Голосовать" id="btnPoll"><br>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+
+            <div id="navPages">
+                <div class="navInfo">Page 1 of 12</div>
+                <div class="navInfo">1</div>
+                <a href="" class="lnkPage">2</a>
+                <a href="" class="lnkPage">3</a>
+                <a href="" class="lnkPage">4</a>
+                <a href="" class="lnkPage">5</a>
+                <div class="navDots">...</div>
+                <a href="" class="lnkPage">10</a>
+                <div class="navDots">...</div>
+                <a href="" class="lnkPage">>></a>
+                <a href="" class="lnkPage">Last</a>
+            </div>
+
+            <footer>Copyright 2015</footer>
+        </div>
+
+    </body>
+</html>

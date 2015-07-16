@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block left %}
+
+                <div class="ltArticle2">
+                <div class="opacity"></div>
+                <div class="artTitle">
+                <span>{{ game.title }}</span>
+                <a href="/game/addlike/{{ game.id }}" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ game.likes }}</span></a></div>
+                <div class="artText">
+                <img src="{% static {{ game.image }} %}" alt="" class="imgBook">
+                {{ game.text }}
+                </div>
+                <div class="artInfo">
+                <div class="artInfo2">
+                Дата публикации: <span class="dateArticle">{{ game.date }}</span>.
+                </div>
+                </div>
+                </div>
+
+            <div id="comments">
+
+            {% for game_comment in games_comments %}
+
+                    <div class="ltComment">
+                    <div class="opacity"></div>
+                    <div class="artTitle">
+                    <span>{{ game_comment.title }}</span>
+                    <a href="/game/{{ game.id }}/comment/addlike/{{ game_comment.id }}" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ game_comment.likes }}</span></a></div>
+                    <div class="artText">
+                    {{ game_comment.text }}
+                    </div>
+                    <div class="artInfo">
+                    <div class="artInfo2">
+                    Дата: <span class="dateArticle">{{ game_comment.date }}</span>.
+                    </div>
+                    </div>
+                    </div>
+
+                {% endfor %}
+
+                <form action="/game/addcomment/{{ game.id }}" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="add comment" class="lnkComments">
+                </form>
+
+                </div>
+
+            </div>
+
+{% endblock %}

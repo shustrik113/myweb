@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block left %}
+                <div class="ltArticle">
+                <div class="opacity"></div>
+                <div class="artTitle">
+                <span>{{ article.title }}</span>
+                <a href="/article/addlike/{{ article.id }}" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ article.likes }}</span></a></div>
+
+                <div class="artText">
+                <img src="/{{ article.image }}" alt="" class="imgBook">
+                {{ article.text | linebreaksbr }}
+                </div>
+
+                <div class="artInfo">
+                <div class="artInfo2">
+                Дата: <span class="dateArticle">{{ article.date }}</span>.
+                </div>
+                </div>
+                </div>
+
+            <div id="comments">
+
+            {% for comment in comments %}
+
+                    <div class="ltArticle">
+                    <div class="opacity"></div>
+                    <div class="artTitle">
+                    <span>{{ comment.title }}</span>
+                    <a href="/article/{{ article.id }}/comment/addlike/{{ comment.id }}" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ comment.likes }}</span></a></div>
+                    <div class="artText">
+                    {{ comment.text | linebreaksbr }}
+                    </div>
+                    <div class="artInfo">
+                    <div class="artInfo2">
+                    Дата: <span class="dateArticle">{{ comment.date }}</span>.
+                    </div>
+                    </div>
+                    </div>
+
+                {% endfor %}
+
+                <div class="ltComment">
+                <div class="opacity"></div>
+
+                <form action="/article/addcomment/{{ article.id }}" method="POST" class="frmAddCom">
+                    {% csrf_token %}
+                    {{ form }}
+                    <p></p>
+                    <input type="submit" value="add comment" class="lnkComments">
+                </form>
+
+                </div>
+
+                </div>
+
+
+
+{% endblock %}

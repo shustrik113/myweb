@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block left %}
+
+            {% for article in articles %}
+
+                <div class="ltArticle">
+                <div class="opacity"></div>
+                <div class="artTitle">
+                <a href="/article/{{ article.id }}">{{ article.title }}</a>
+                <a href="/article/addlike/{{ article.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ article.likes }}</span></a></div>
+
+                <div class="artText">
+                <img src="{{ article.image }}" alt="" class="imgBook">
+                {{ article.text }}
+                </div>
+
+                <div class="artInfo">
+                <div class="artInfo2">
+                Дата: <span class="dateArticle">{{ article.date }}</span>. Комментарии: <span class="countComments">
+                    {{ article.num_comments }}
+                </span>
+                </div>
+                <a href="/article/{{ article.id }}" class="lnkMore"><span>more</span></a>
+                <a href="/article/{{ article.id }}#comments" class="lnkComments"><span>comments</span></a>
+                </div>
+                </div>
+
+            {% endfor %}
+
+ {% endblock %}

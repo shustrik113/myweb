@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block left %}
+
+            {% for game in games %}
+
+                <div class="ltArticle">
+                <div class="opacity"></div>
+                <div class="artTitle">
+                <a href="/game/{{ game.id }}">{{ game.title }}</a>
+                <a href="/game/addlike/{{ game.id }}/" class="lnkLike"><img src="{% static 'images/Like.png' %}" alt="" class="imgLike"><span>{{ game.likes }}</span></a></div>
+                <div class="artText">
+                <img src="{% static {{ game.image }} %}" alt="" class="imgBook">
+                {{ game.text }}
+                </div>
+                <div class="artInfo">
+                <div class="artInfo2">
+                Дата публикации: <span class="dateArticle">{{ game.date }}</span>. Комментарии: <span class="countComments">0</span>
+                </div>
+                <a href="/game/{{ game.id }}" class="lnkMore"><span>more</span></a>
+                <a href="/game/{{ game.id }}#comments" class="lnkComments"><span>comments</span></a>
+                </div>
+                </div>
+
+            {% endfor %}
+
+            </div>
+
+ {% endblock %}
