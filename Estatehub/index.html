@@ -1,0 +1,496 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Title of page</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="red_line"></div>
+    <div class="all">
+    <header>
+    <nav>
+        <div class="logo">
+            <a href="#">
+                <img src="images/logo.png" alt="">
+            </a>
+        </div>
+        <div class="main_menu">
+            <ul class="menu">
+                <li><div class="this_page">Home</div></li>
+                <li><a href="#">Rentals
+                <img src="images/select_button.png" alt="" class="menu_arrow">
+                </a>
+                    <ul class="submenu">
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Estates
+                        <img src="images/select_button.png" alt="" class="menu_arrow">
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Mortage rates
+                        <img src="images/select_button.png" alt="" class="menu_arrow">
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">About us
+                        <img src="images/select_button.png" alt="" class="menu_arrow">
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contact
+                        <img src="images/select_button.png" alt="" class="menu_arrow">
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a><hr></li>
+                        <li><a href="#">Submenu</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- SLIDER -->
+
+    <div class="slider">
+        <div class="img_container">
+            <img src="images/header_02.jpg" alt="" id="mainImg2">
+            <img src="images/header_01.jpg" alt="" id="mainImg">
+
+            <div id="mainImg_adaptive"></div>
+        </div>
+
+        <div class="slider_nav1"></div>
+        <div class="slider_nav2"></div>
+
+        <div class="find">
+            <div class="opacity"></div>
+            <div class="find_inside">
+                <span>Find your home</span>
+                <form action="/search/" method="POST">
+                    <div>
+                        <input type="radio" name="aim" id="sale">
+                        <label for="sale">For sale</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="aim" id="rent">
+                        <label for="rent">For rent</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="aim" id="market">
+                        <label for="market">Pre-market</label>
+                    </div>
+                    <br><br>
+                    <div class="search_block">
+                        <input type="search" placeholder="Search your house">
+                        <input type="submit" value="">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <!-- Radio navigation of slider -->
+    <ul class="header_nav">
+
+        <li>
+            <input type="radio" name="header" id="img_01" checked="checked">
+            <label for="img_01">
+                <span><span></span></span>
+            </label>
+        </li>
+        <li>
+            <input type="radio" name="header" id="img_02">
+            <label for="img_02">
+                <span><span></span></span>
+            </label>
+        </li>
+        <li>
+            <input type="radio" name="header" id="img_03">
+            <label for="img_03">
+                <span><span></span></span>
+            </label>
+        </li>
+    </ul>
+    </div>
+
+     <!-- END OF SLIDER -->
+
+    </header>
+
+    <div class="search_ads">
+
+    <!-- TABS -->
+
+        <div class="red_links">
+            <div class="tab-wrapper"><div id="tab1" class="active">For sale</div>
+                <img src="images/tab.png" alt="">
+            </div>
+            <div class="tab-wrapper"><div id="tab2">For rent</div>
+                <img src="images/tab.png" alt="">
+            </div>
+        </div>
+
+        <form action="/search_ads/" method="POST">
+            <!-- select_block -->
+            <div class="select_block_tab1 active">
+                <div class="select_outer">
+                    <select name="country">
+                        <option value="ru">&nbsp;&nbsp;Russia</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="location">
+                        <option value="ru">&nbsp;&nbsp;Location</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="apartment">
+                        <option value="ru">&nbsp;&nbsp;Apartment</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="space">
+                        <option value="ru">&nbsp;&nbsp;Space</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="size">
+                        <option value="ru">&nbsp;&nbsp;Size</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+            </div>
+            <!-- select_block_tab1 -->
+
+            <!-- select_block_tab2 -->
+            <div class="select_block_tab2">
+                <div class="select_outer">
+                    <select name="country">
+                        <option value="ru">&nbsp;&nbsp;Russia2</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="location">
+                        <option value="ru">&nbsp;&nbsp;Location</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="apartment">
+                        <option value="ru">&nbsp;&nbsp;Apartment</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="space">
+                        <option value="ru">&nbsp;&nbsp;Space</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="size">
+                        <option value="ru">&nbsp;&nbsp;Size</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+            </div>
+            <!-- select_block_tab2 -->
+
+            <div>
+                <input type="submit" value="Search ads">
+            </div>
+            <hr>
+
+        <!-- END OF TABS -->
+
+            <div class="select_block"><br>
+                <div class="select_outer">
+                    <select name="price">
+                        <option value="ru">&nbsp;&nbsp;Price</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="rooms">
+                        <option value="ru">&nbsp;&nbsp;Rooms</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="comission">
+                        <option value="ru">&nbsp;&nbsp;Comission</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="floors">
+                        <option value="ru">&nbsp;&nbsp;Floors</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+                <div class="select_outer">
+                    <select name="renovation">
+                        <option value="ru">&nbsp;&nbsp;Renovation</option>
+                        <option value="ua">&nbsp;&nbsp;Ukraine</option>
+                        <option value="us">&nbsp;&nbsp;USA</option>
+                    </select>
+                    <a class="select_button"></a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="articles">
+        <div class="column">
+            <h4>Classified</h4>
+            <div>Lorem ipsum dolor sit amet, vel sit sem in dui. Lorem ipsum dolor sit amet, vel sit sem in dui. Lorem ipsum dolor sit amet, vel sit sem in dui. Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+            <img src="images/realty.jpg" alt="">
+
+            <h4>I need a:</h4>
+            <img src="images/ava.jpg" alt="" class="ava">
+            <h4>Need a real estate!</h4>
+            <div class="name">John Doe</div>
+            <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+
+            <h4>Questions and issues:</h4>
+            <div class="grey">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+            </div>
+        </div>
+        <div class="column">
+            <div>
+                <img src="images/article_01.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_01.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_01.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_01.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div>
+                <img src="images/article_02.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_02.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_02.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_02.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div>
+                <img src="images/article_03.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_03.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_03.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+            <div>
+                <img src="images/article_03.jpg" alt="">
+                <h4>Lorem ipsum dolor</h4>
+                <div>Dolor sit 48, amet 1993/271</div>
+                <div>Lorem ipsum dolor sit amet, vel sit sem in dui</div>
+                <div class="price">Price: 29 500$</div>
+            </div>
+        </div>
+        <div class="red_nav">
+            <a href=""><img src="images/red_nav_left.png" alt=""></a>
+            <a href=""><img src="images/red_nav_right.png" alt=""></a>
+        </div>
+    </div>
+    <div class="text">
+        <h3>Property for sale: house is now easy to find</h3>
+        <p>Lorem ipsum dolor sit amet, vel sit sem in dui pellentesque. Before text editors existed, computer text was punched into cards with keypunch machines. Physical boxes of these thin cardboard cards were then inserted into a card-reader.</p>
+        <div class="text_imgs">
+            <img src="images/house_01.jpg" alt="">
+            <img src="images/house_02.jpg" alt="">
+        </div>
+        <p>Lorem ipsum dolor sit amet, vel sit sem in dui pellentesque. Before text editors existed, computer text was punched into cards with keypunch machines. Physical boxes of these thin cardboard cards were then inserted into a card-reader. Magnetic tape and disk "card-image" files created from such card decks often had no line-separation characters at all, and assumed fixed-length 80-character records. An alternative to cards was punched paper tape.</p>
+        <div class="follow">
+            <div>Follow us:</div>
+            <ul class="follow_list">
+                <li><a href=""><img src="images/follow_01.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/follow_02.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/follow_03.jpg" alt=""></a></li>
+                <li><a href=""><img src="images/follow_04.jpg" alt=""></a></li>
+            </ul>
+        </div>
+    </div>
+    </div> <!-- all -->
+    <footer>
+        <div class="footer_upper">
+            <div class="footer_column">
+                <div>About</div>
+                <ul class="footer_list">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Blog</a></li>
+                    <li><a href="#">Affiliates</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <div>Discover</div>
+                <ul class="footer_list">
+                    <li><a href="#">Freelancers</a></li>
+                    <li><a href="#">Art</a></li>
+                    <li><a href="#">Authors</a></li>
+                    <li><a href="#">Publishing</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <div>Create</div>
+                <ul class="footer_list">
+                    <li><a href="#">Start a Project</a></li>
+                    <li><a href="#">Project Guidlines</a></li>
+                    <li><a href="#">Related Questions</a></li>
+                    <li><a href="#">Marketing</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <div>Media Social</div>
+                <ul class="footer_list">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">My Space</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="footer_column">
+                <div>Contact</div>
+                <ul class="footer_list">
+                    <li><a href="#">Get in Touch</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_lower">
+            <div class="copyright">
+                &copy; Copyright 2013. All rights reserved
+            </div>
+            <ul class="footer_menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Rentals</a></li>
+                <li><a href="#">Estates</a></li>
+                <li><a href="#">Mortage rates</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
